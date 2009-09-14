@@ -1,0 +1,581 @@
+@import compass/utilities/general/reset.sass
+@import 960/grid.sass
+@import facebook.sass
+@import tabs.sass
+
+//+global-reset
+
+!main_color =	#1F75CC
+!secondary_color =	#F4FAFF
+!border_notices = 1px "solid" #aeceef
+
+=fnt
+  :font-family	"lucida grande","segoe ui",arial,sans-serif
+  :font-size	11px
+  :font-weight	normal
+  :font-style	normal
+  :color = !main_color
+  :text-transform	none
+  :text-decoration	none
+  :letter-spacing	normal
+  :word-spacing	normal
+//  :line-height	20px
+  :line-height	16.5px
+  :vertical-align	baseline
+  :direction	ltr
+
+=dots
+  :background-color	transparent
+  :background-image	url(/static/img/skinny_dots.gif)
+  :background-repeat	repeat-x
+  :background-position	50% 100%
+  :background-attachment	scroll
+  :opacity	1
+
+=dots-top
+  :background-color	transparent
+  :background-image	url(/static/img/skinny_dots.gif)
+  :background-repeat	repeat-x
+  :background-position	50% 0%
+  :background-attachment	scroll
+  :opacity	1
+
+=curved
+  :-moz-border-radius 10px
+  :-webkit-border-radius 10px
+
+
+hr
+  :color #fff
+  :border 0
+  +dots
+
+body
+  +grid-container
+  :background-color #FFF
+  :margin 0
+
+html
+  :height 100%
+
+
+body
+  +fnt
+  :color #333
+
+
+a
+  :color = !main_color
+  :text-decoration none
+
+  &:visited
+    :color = !main_color
+    :text-decoration none
+
+  &:hover
+    :color = !main_color
+    :text-decoration underline
+
+
+img
+  :border 0
+
+
+dt
+  :font-weight bold
+
+
+table
+  :border-collapse collapse
+  :border-spacing 0
+  :border 0
+  :font-size inherit
+
+
+td
+  :margin 0
+  :border 0
+  :padding 0
+
+
+#body
+  :clear both
+  :margin 0 auto
+  :padding 10px
+
+#footer
+  +dots-top
+  :color #777777
+  :margin 50px auto
+  :padding 10px
+  :clear both
+  .header
+    :margin-left -5px
+    :color #787878
+    :font-weight bold
+
+  #col1
+    :margin-top 2px
+    :margin-bottom 2px
+    +grid(3,16)
+  #col2
+    :margin-top 2px
+    :margin-bottom 2px
+    +grid(3,16)
+  #col3
+    :margin-top 2px
+    :margin-bottom 2px
+    +grid(3,16)
+  #col4
+    +grid(3,16)
+    :color #aaaaaa
+    a
+      :color #aaaaaa
+
+  a
+    :color #777777
+
+    &:visited
+      :color #777777
+
+    &:hover
+      :color #787878
+      :text-decoration underline
+
+
+#site_wide_announcements
+  :background yellow
+  :padding 10px
+  :text-align center
+
+  ul
+    :padding 0
+    :margin 0
+
+
+h1
+  :margin 0
+  :font-size 21px
+
+
+form
+  th
+    :text-align left
+
+  &.signup input[type="submit"], &.login input[type="submit"]
+    :margin 20px 0
+    :font-size 14pt
+
+
+input
+  &[type="text"], &[type="password"]
+    :padding 3px
+    :margin 3px
+    :border solid 1px #C6C6C6
+    :border-bottom solid 1px #E3E3E3
+    :color #666
+    :font-size 12pt
+    :background #F3F3F3 url('/static/pinax/images/form-shadow.png') left top repeat-x
+
+
+textarea
+  :padding 3px
+  :margin 3px
+  :border solid 1px #C6C6C6
+  :border-bottom solid 1px #E3E3E3
+  :color #666
+  :font-size 12pt
+  :background #F3F3F3 url('/static/pinax/images/form-shadow.png') left top repeat-x
+
+
+.clearboth
+  :clear both
+
+#container
+  +grid-prefix(2,16)
+  +grid-suffix(1,16)
+
+#welcome
+  +curved
+  :background = !secondary_color
+  :padding 5px 10px 5px 10px
+  :border = !border_notices
+
+#tabhead
+  +dots
+  :position relative
+
+  .logo
+    :height 116px
+    :padding-left 5px
+    :padding-top 0
+
+    img
+      :width 236px
+      :height 62px
+      :margin-top 20px
+
+  .login
+    :position absolute
+    :top 10px
+    :width 160px
+    :right 5px
+    :color #DEF
+    :font-family	"lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif
+    :font-size	11px
+    :font-weight	401
+    :font-style	normal
+    :color	#222222
+    :text-transform	none
+    :text-decoration	none
+    :letter-spacing	normal
+    :word-spacing	normal
+    :line-height	14px
+    :text-align	start
+    :vertical-align	baseline
+    :direction	ltr
+    :padding 5px 8px 5px 8px
+    #rest
+      :display inline
+      :color = !main_color
+
+    a
+      :color = !main_color
+      :text-decoration	none
+
+      &:visited
+        :color = !main_color
+        :text-decoration	none
+
+      &:hover
+        :color = !main_color
+        :text-decoration underline
+      b
+        :color #000
+        
+    #avatar-icon
+      :height 40px
+      :display inline
+      :margin-top 8px
+
+ul
+  &.errorlist
+    :margin 0
+    :padding 0
+    :list-style none
+    :color red
+
+  &#messages
+    :margin 0 0 10px 0
+    :padding 0
+    :list-style none
+
+    li
+      :padding 5px 10px
+      :background = !secondary_color
+      :margin 3px
+      :border = !border_notices
+
+      a
+        :float right
+        :color = !main_color
+
+
+.verified
+  :color green
+
+
+.remove
+  :color red
+
+
+.unverified
+  :color gray
+
+
+.primary
+  :font-weight bold
+
+
+table.email_list td
+  :padding 5px 10px
+
+
+.warning
+  :color red
+  :font-weight bold
+
+
+div
+  &.notice
+    :margin 0
+    :padding 5px
+    :border-bottom 1px solid #CCC
+
+  &.unseen_notice
+    :margin 0
+    :padding 5px
+    :background #DFC
+    :border-bottom 1px solid #CCC
+
+
+h2.notice_date
+  :font-size 12pt
+  :color #666
+  :border-bottom 1px solid #999
+
+
+span
+  &.notice_type
+    :color #666
+
+  &.notice_message
+  &.notice_time
+    :color #999
+    :font-size 90%
+
+
+table.notice_settings td
+  :line-height 90%
+  :padding 5px 10px
+
+
+span.notice_type_description
+  :color #666
+  :font-size 80%
+  :font-style italic
+
+
+div.profile_info p
+  :margin 0
+
+
+
+#subnav
+  :margin 0
+  :padding 0
+  :padding-bottom 10px
+  :background #fff
+
+  ul
+    //:float right
+    :margin 0
+    :padding 0
+
+    li
+      :display inline
+      :list-style-type none
+
+    a
+      &:link, &:visited
+        :float left
+        :font-weight bold
+        :text-decoration none
+        :color #444
+        :padding 4px 20px
+
+      &:hover
+        :color #FFF
+        :background = !main_color
+        :text-decoration underline
+
+
+div
+  &.right_panel
+    :margin-top 20px
+    :width 200px
+    :float right
+    :z-index 999
+
+  &.notice_settings
+    :background = !secondary_color
+    :padding 8px
+    :margin 20px 0
+    :border 1px solid #aeceef
+
+    h2
+      :margin 0 0 5px 0
+      :padding 0
+
+
+#locale_switcher
+  :display inline
+
+
+.ac_results
+  :padding 0px
+  :border 1px solid black
+  :background-color white
+  :overflow hidden
+  :z-index 99999
+
+  ul
+    :width 100%
+    :list-style-position outside
+    :list-style none
+    :padding 0
+    :margin 0
+
+  li
+    :margin 0px
+    :padding 2px 5px
+    :cursor default
+    :display block
+    :font menu
+    :font-size 12px
+    :line-height 16px
+    :overflow hidden
+
+    img
+      :float left
+      :margin 5px
+
+
+.ac_loading
+  :background white url('indicator.gif') right center no-repeat
+
+
+.ac_odd
+  :background-color #eee
+
+
+.ac_over
+  :background-color #0A246A
+  :color white
+
+
+.pagination
+  :margin 10px 0
+
+  .disabled
+    :padding 3px
+    :color #999
+    :border 1px solid #CCC
+
+  .current
+    :padding 3px
+    :color #FFF
+    :border 1px solid #9BC
+    :background #9BC
+
+  a
+    :padding 3px
+    :text-decoration none
+    :border 1px solid #9BC
+    :color #444
+    :background #DEF
+
+
+.clearfix
+  :min-height 1%
+
+  &:after
+    :content "."
+    :display block
+    :height 0
+    :clear both
+    :visibility hidden
+
+
+* html .clearfix
+  :height 1%
+
+
+dl.what_next
+  :margin 2em
+
+  dt
+    :font-size 120%
+
+  dd
+    :margin 0 0 1em 0
+    :font-style italic
+
+
+p.what_next
+  :font-size 120%
+
+
+#basic-form
+  .underlineme
+    :border-bottom 4px solid #DEDEDE
+    :margin-top 15px
+
+  hr
+    :border-top solid 4px #DEDEDE
+
+  p
+    :color #666666
+    :border-bottom solid 1px #dedede
+    :padding-bottom 5px
+
+  label
+    :display block
+    :font-weight bold
+
+  td
+    :padding 2px
+
+    &.rightd
+      :padding-right 70px
+
+  span
+    :color #aaa
+    :font-style italic
+    :width 300px
+
+  input, select, textarea
+    :float left
+    :margin 2px 0 2px 10px
+    :font-size 11px
+
+
+fieldset
+  :padding 20px
+  :margin 0 0 1.5em 0
+  :border 2px solid #ddd
+
+
+legend
+  :padding 0 .4em
+  :font-weight bold
+  :font-size 1.2em
+
+
+.left-form
+  :width 360px
+  :float left
+  :margin-right 60px
+
+
+.right-form
+  :width 360px
+  :float right
+
+  p
+    :line-height 21px
+
+
+.padtop
+  :margin-top 20px
+
+
+.signupform
+  :float left
+
+
+.form-toggle
+  p
+    :margin-bottom 2px
+
+    span
+      :background = !secondary_color
+      :padding 3px 6px
+      :border 1px solid #aeceef
+      :cursor pointer
+
+  form
+    :padding 3px 6px
+    :margin 0
+    :background = !secondary_color
+    :border 1px solid #aeceef

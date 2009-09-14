@@ -3,19 +3,53 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
     <title>Tornado Facebook Stream Demo</title>
-    <link rel="stylesheet" href="{{ static_url("facebook.css") }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ static_url("css/base.css") }}" type="text/css"/>
   </head>
   <body>
-    <div id="body">
-      <div style="float:right">
-	<b>{{ escape(current_user["name"]) }}</b> -
-	<a href="/auth/logout">{{ _("Sign out") }}</a>
+    <div id="container">
+      <div id="tabhead">
+        <div class="logo">
+          <img src="/static/img/pinax-test.png" alt="pinax-test"/>
+        </div>
+        <div class="login">
+          <div id="login-line">
+            <b>{{ escape(current_user["name"]) }}</b> -
+            <a href="/auth/logout">{{ _("Sign out") }}</a>
+          </div>
+        </div>
+        <div id="left_tabs">
+          <ul class="mainmenu">
+              <li><a href="#">Empty</a></li>
+              <li><a href="#">Empty</a></li>
+              <li><a href="#">Empty</a></li>
+              <li><a href="#">Empty</a></li>
+          </ul>
+        </div>
       </div>
-      <div style="margin-bottom:1em"><a href="/">{{ _("Refresh stream") }}</a></div>
+      <a href="/">{{ _("Refresh stream") }}</a>
       <div id="stream">
 	{% for post in stream["posts"] %}
           {{ modules.Post(post, stream["profiles"][post["actor_id"]]) }}
 	{% end %}
+      </div>
+      <div id="footer">
+        <div id="col1">
+            <a class="header" href="#">Meta</a><br />
+            <a href="#">About</a><br />
+            <a href="#">Blog</a><br />
+        </div>
+        <div id="col2">
+            <a class="header" href="#">Legal</a><br />
+            <a href="#">Terms of service</a><br />
+            <a href="#">Privacy policy</a><br />
+            <a href="#">Dmca notice</a><br />
+        </div>
+        <div id="col3">
+            <a class="header" href="#">Service</a><br />
+        </div>
+        <div id="col4">
+            &copy; 2008-2009 <a href="http://evil-giraffe.com">Evil Giraffe</a><br />
+        </div>
       </div>
     </div>
   </body>

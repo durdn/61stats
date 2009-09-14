@@ -1,0 +1,2 @@
+body.profile #tab_profile a, body.notices #tab_notices a { color: #000; }
+body.profile #tab_profile, body.notices #tab_notices { margin: 0; padding: 5px 0 5px; background-color: #fff; }
