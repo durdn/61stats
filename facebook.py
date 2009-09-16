@@ -36,7 +36,8 @@ define("facebook_secret", help="your Facebook application secret",
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
-            (r"/", MainHandler),
+            (r"/", HomeHandler),
+            (r"/a/fb-stream", FbStreamHandler),
             (r"/auth/login", AuthLoginHandler),
             (r"/auth/logout", AuthLogoutHandler),
         ]
@@ -60,13 +61,17 @@ class BaseHandler(tornado.web.RequestHandler):
         if not user_json: return None
         return tornado.escape.json_decode(user_json)
 
+class HomeHandler(BaseHandler):
+    def get(self):
+        self.render("index.html")
 
-class MainHandler(BaseHandler, tornado.auth.FacebookMixin):
+class FbStreamHandler(BaseHandler, tornado.auth.FacebookMixin):
     @tornado.web.authenticated
     @tornado.web.asynchronous
     def get(self):
         self.facebook_request(
             method="stream.get",
+            limit=4,
             callback=self.async_callback(self._on_stream),
             session_key=self.current_user["session_key"])
 

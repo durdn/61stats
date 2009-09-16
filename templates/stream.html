@@ -1,39 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
-    <title>Tornado Based App</title>
-    <link rel="stylesheet" href="{{ static_url("css/base.css") }}" type="text/css"/>
-  </head>
-  <body>
-    <div id="container">
-      <div id="tabhead">
-        {% include 'tabhead.html' %}
-        <a href="#/test">test sammy.js</a>
-      </div>
-      <div id="test">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar ornare elit, a elementum neque condimentum non. Vestibulum ultrices velit sit amet sem vulputate a molestie augue euismod. Nunc lobortis erat sit amet urna congue dapibus. Proin bibendum tortor ac nunc lobortis a euismod ante rutrum. Curabitur nec adipiscing lacus. Pellentesque nec mi arcu. Suspendisse feugiat magna at sem rhoncus aliquet tristique metus aliquam. Fusce aliquam enim posuere est cursus consectetur. Duis porta, metus nec molestie pellentesque, dolor lectus lacinia odio, nec congue libero felis eu lacus. Proin faucibus felis vel turpis porttitor at lacinia nulla vehicula. Donec sagittis odio eu ligula condimentum placerat. Curabitur ac diam metus. Curabitur cursus velit laoreet metus blandit tristique. Pellentesque convallis velit odio, in ultrices massa. Cras ut lorem nec magna lobortis sodales at sed ante. In hac habitasse platea dictumst.
-        </p>
-        <p>Etiam feugiat iaculis massa et vehicula. Ut vitae lacinia enim. Cras tellus ligula, varius vitae pulvinar a, tincidunt a lectus. Quisque scelerisque, sapien et pulvinar consectetur, massa diam pretium nunc, a malesuada ante lacus sed purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur auctor pretium sagittis. Sed arcu diam, cursus nec fringilla vitae, interdum et risus. Ut vel justo est, vitae volutpat est. Quisque eget dolor quis risus consequat viverra. Duis in ante nisi, ut rutrum urna. Nunc pellentesque, enim at feugiat hendrerit, nibh erat condimentum ante, at vulputate odio sapien eget sapien. Curabitur lorem libero, imperdiet ac tincidunt a, elementum quis lorem. Curabitur auctor neque at metus condimentum at consectetur ante auctor.
-        </p>
-        <p>Vivamus suscipit sapien non tortor ornare eu blandit eros lobortis. Nulla vulputate est a risus feugiat ut lobortis ipsum pretium. Integer ac pretium urna. Nam ornare odio a quam dignissim vitae auctor enim pretium. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam ut orci leo. Vestibulum vulputate adipiscing tortor, mollis facilisis justo luctus non. Fusce sodales urna nec ligula vehicula ut volutpat quam tristique. Suspendisse consectetur ultricies augue, at scelerisque justo molestie in. Pellentesque commodo commodo mi a suscipit. Nullam nisl lectus, mattis vitae elementum nec, interdum sollicitudin sem. Vestibulum odio dolor, ornare id laoreet eget, vestibulum vitae velit. Quisque dignissim luctus nulla in rutrum. Nullam a nisl quam, in accumsan nisi. Morbi tortor est, viverra sed condimentum vitae, tempor sit amet purus. Curabitur vel tortor eget sapien vestibulum placerat nec condimentum sapien. Vestibulum turpis eros, porttitor vel condimentum et, mattis ut dolor.
-        </p>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam vel nibh nisl. Vestibulum volutpat elit non nisi pellentesque facilisis. Quisque ullamcorper venenatis odio. Proin ut volutpat turpis. Vivamus ultricies libero in ante varius et sollicitudin tortor cursus. Pellentesque lorem ligula, commodo ornare ullamcorper non, aliquam sed nisl. Nullam at mi quam. Donec purus nunc, aliquam in sollicitudin gravida, fermentum non dolor. Aliquam vestibulum ornare felis a facilisis. Morbi pellentesque diam in lacus volutpat vestibulum. Nunc condimentum tellus aliquet libero sodales ac porta turpis pretium. Fusce tincidunt leo eget felis laoreet nec ultricies diam volutpat. Aenean nec purus mauris, vitae sodales turpis. Integer suscipit vulputate lacus id convallis. Suspendisse iaculis bibendum velit, id facilisis tortor vulputate vel. Ut consequat velit eu lectus mollis non ultrices arcu aliquet. Duis sed arcu in nisl suscipit porta in sit amet arcu. Duis volutpat adipiscing diam consectetur porta.
-        </p>
-        <p>Suspendisse fringilla malesuada fringilla. Cras tincidunt, velit id imperdiet euismod, enim dui dictum neque, nec ultricies metus eros eget urna. Nulla ac velit turpis. Mauris massa est, scelerisque sit amet pulvinar sit amet, vulputate a est. Proin ut tellus eget augue viverra dictum eu eu dolor. Nulla facilisi. Aenean neque risus, condimentum ultrices malesuada sed, vehicula ac ipsum. In hac habitasse platea dictumst. Integer iaculis metus sit amet enim eleifend tincidunt. Vestibulum nisl augue, pellentesque eu placerat eget, suscipit in orci. Fusce ac facilisis ipsum.
-        </p>
-      </div>
-      <div id="fb-stream">
     	{% for post in stream["posts"] %}
           {{ modules.Post(post, stream["profiles"][post["actor_id"]]) }}
     	{% end %}
-      </div>
-      <div id="footer">
-        {% include 'footer.html' %}
-      </div>
-    </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
-    <script src="{{ static_url("js/sammy.min.js") }}" type="text/javascript"></script>
-    <script src="{{ static_url("js/base.js") }}" type="text/javascript"></script>
-  </body>
-</html>
