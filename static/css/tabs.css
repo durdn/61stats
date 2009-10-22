@@ -1,4 +1,4 @@
-#left_tabs { position: relative; padding-bottom: 10px; }
+#left_tabs { position: relative; padding-bottom: 10px; background-color: transparent; background-image: url(/static/img/skinny_dots.gif); background-repeat: repeat-x; background-position: 50% 100%; background-attachment: scroll; opacity: 1; }
 
 ul.mainmenu { margin: 0 0 5px; font-family: "lucida grande","segoe ui",arial,sans-serif; font-size: 16px; font-weight: bold; font-style: normal; color: #1f75cc; text-transform: none; text-decoration: none; letter-spacing: normal; word-spacing: normal; line-height: 20px; vertical-align: baseline; direction: ltr; padding-left: 10px; }
 ul.mainmenu img { vertical-align: middle; margin-right: 5px; }

@@ -1,11 +1,13 @@
+@import compass/utilities/general/clearfix.sass
 @import compass/utilities/general/reset.sass
 @import 960/grid.sass
 @import tabs.sass
 @import common.sass
 @import style.sass
 
+//+global-reset
+
 body
-  +grid-container
   +fnt
   :color #333
   :background-color #FFF
@@ -15,18 +17,17 @@ html
   :height 100%
 
 #container
-  +grid-prefix(2,16)
-  +grid-suffix(2,16)
-
-#welcome
-  +grid(12,16)
-  +curved
-  :background = !secondary_color
-  :padding 5px 10px 5px 10px
-  :border = !border_notices
+  +grid-system(16)
+  +clearfix
+  +grid-children
+  +shade
 
 #tabhead
-  +dots
+  +grid-prefix(2,16)
+  +grid-suffix(2,16)
+  +grid(12,16)
+  +alpha
+  +omega
   :position relative
 
   .logo
@@ -41,7 +42,7 @@ html
     :position absolute
     :top 10px
     :width 160px
-    :right 5px
+    :right 65px
     :color #DEF
     :font-family	"lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif
     :font-size	11px
@@ -68,7 +69,9 @@ html
         :text-decoration underline
 
 #subnav
+  +alpha
   +grid(12,16)
+  +omega
   :margin 0
   :margin-top 5px
   :padding 0
@@ -98,20 +101,39 @@ html
         +box-filter
         :text-decoration none
 
+#welcome
+  +grid-prefix(2,16)
+  +grid(12,16)
+  +grid-suffix(2,16)
+  +alpha
+  +omega
+  .frame
+    +curved
+    :background = !secondary_color
+    :padding 5px 10px 5px 10px
+    :margin 0
+    :border = !border_notices
+
 
 #test
-  +alpha
+  +grid-prefix(2,16)
   +grid(6,16)
+  +alpha
 
 #fb-stream
-  +omega
   +grid(6,16)
+  +grid-suffix(2,16)
+  +omega
 
 #footer
-  +dots-top
-  :color #777777
-  :padding 10px
-  :clear both
+  +grid-prefix(2,16)
+  +grid-suffix(2,16)
+  +grid(12,16)
+  :margin 0
+  .frame
+    +dots-top
+    :color #777777
+    :padding 10px
   .header
     :margin-left -5px
     :color #787878
@@ -132,13 +154,10 @@ html
     :color #aaaaaa
     a
       :color #aaaaaa
-
   a
     :color #777777
-
     &:visited
       :color #777777
-
     &:hover
       :color #787878
       :text-decoration underline
