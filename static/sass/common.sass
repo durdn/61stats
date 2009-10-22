@@ -1,0 +1,121 @@
+!main_color =	#1F75CC
+!secondary_color =	#F4FAFF
+!border_notices = 1px "solid" #aeceef
+!disabled_color = #ffffff
+!disabled_text_color = #dddddd
+
+=fnt
+  :font-family	"lucida grande","segoe ui",arial,sans-serif
+  :font-size	11px
+  :font-weight	normal
+  :font-style	normal
+  :color = !main_color
+  :text-transform	none
+  :text-decoration	none
+  :letter-spacing	normal
+  :word-spacing	normal
+//  :line-height	20px
+  :line-height	16.5px
+  :vertical-align	baseline
+  :direction	ltr
+
+=dots
+  :background-color	transparent
+  :background-image	url(/static/img/skinny_dots.gif)
+  :background-repeat	repeat-x
+  :background-position	50% 100%
+  :background-attachment	scroll
+  :opacity	1
+
+=dots-top
+  :background-color	transparent
+  :background-image	url(/static/img/skinny_dots.gif)
+  :background-repeat	repeat-x
+  :background-position	50% 0%
+  :background-attachment	scroll
+  :opacity	1
+  
+=img-top
+  img
+    :vertical-align top
+    :text-decoration none
+    :margin-right 5px
+    
+=img-middle
+  img
+    :vertical-align middle
+    :text-decoration none
+    :margin-right 5px
+    
+=curved5
+  :-moz-border-radius 5px
+  :-webkit-border-radius 5px
+  :-moz-box-shadow 3px 3px 3px 0px #aaaaaa
+  :-webkit-box-shadow 3px 3px 3px #aaaaaa
+
+=curved
+  :-moz-border-radius 10px
+  :-webkit-border-radius 10px
+  :-moz-box-shadow 5px 5px 5px 0px #aaaaaa
+  :-webkit-box-shadow 5px 5px 5px #aaaaaa
+
+=box
+  +curved
+  :background = !secondary_color
+  :padding 5px 10px 5px 10px
+  :border = !border_notices
+  h2
+    :padding-top 0px
+    :margin-top 5px
+
+=box-white
+  +box
+  :background = #fff
+  
+  
+=box-filter
+  +curved5
+  :background = !secondary_color
+  :border = !border_notices
+  :padding 3px 19px 3px 19px
+
+=box-provider
+  :background = !secondary_color
+  :padding 4px 10px 4px 10px
+  :border = !border_notices
+
+=box-skip
+  +curved5
+  :background = !secondary_color
+  :padding 2px 2px 2px 2px
+  :border = !border_notices
+
+=box-small
+  +curved5
+  :background = !secondary_color
+  :padding 1px 2px 1px 2px
+  :border = !border_notices
+
+=box-disabled
+  +curved
+  :background = !disabled_color
+  :padding 5px 10px 5px 10px
+  :border = !border_notices
+  :color = !disabled_text_color
+  h1,h2,h3,h4
+    :color = !disabled_text_color
+  a
+    :color = !disabled_text_color
+  h2
+    :padding-top 0px
+    :margin-top 5px
+    
+=box-edit    
+  +box-small
+  :text-decoration none
+  :background-image	url(/static/img/icons/report_edit.png)
+  :background-repeat	no-repeat
+  :background-position	100% 50%
+  :background-attachment	scroll
+  :opacity	1
+    
