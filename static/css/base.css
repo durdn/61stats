@@ -16,6 +16,8 @@ img { border: 0; }
 
 p { line-height: 21px; font-size: 13px; }
 
+#reputation-bumps { font-size: 14px; margin-bottom: 15px; }
+
 body { font-family: "lucida grande","segoe ui",arial,sans-serif; font-size: 11px; font-weight: normal; font-style: normal; color: #1f75cc; text-transform: none; text-decoration: none; letter-spacing: normal; word-spacing: normal; color: #333; background-color: #FFF; margin: 0; }
 
 html { height: 100%; }
