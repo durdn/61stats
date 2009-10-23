@@ -92,9 +92,7 @@ html { height: 100%; }
 #welcome { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; padding-right: 120px; margin-left: 0; margin-right: 0; }
 #welcome .frame { -moz-border-radius: 10px; -webkit-border-radius: 10px; -moz-box-shadow: 5px 5px 5px 0px #aaaaaa; -webkit-box-shadow: 5px 5px 5px #aaaaaa; background: #f4faff; padding: 5px 10px 5px 10px; margin: 0; border: 1px solid #aeceef; }
 
-#test { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 340px; margin-left: 0; }
-
-#fb-stream { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 340px; padding-right: 120px; margin-right: 0; }
+#reputation-bumps { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; padding-right: 120px; margin-left: 0; margin-right: 0; }
 
 #footer { padding-left: 120px; padding-right: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; margin: 0; }
 #footer .frame { background-color: transparent; background-image: url(/static/img/skinny_dots.gif); background-repeat: repeat-x; background-position: 50% 0%; background-attachment: scroll; opacity: 1; color: #777777; padding: 10px; }

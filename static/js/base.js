@@ -3,13 +3,10 @@ $(document).ready(function() {
   if (!window.console) window.console = {};
   if (!window.console.log) window.console.log = function() {};
   app = $.sammy(function() { with(this) {
-    get('#/test', function() { with(this) {
-      $('#test').append('link works<br />');
-    }});
-    get('#/fb-stream', function() { with(this) {
-      $('#fb-stream').html(spinning_gif);
-      $.get('/a/fb-stream', function (data) {
-        $('#fb-stream').html(data);
+    get('#/user/:username', function() { with(this) {
+      //$('#reputation-bumps').html(spinning_gif);
+      $.get('/user/' + params['username'], function (data) {
+        $('#reputation-bumps').html(data).fadeIn();
       });
     }});
   }});
