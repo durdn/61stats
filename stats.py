@@ -52,8 +52,10 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class StatsHandler(tornado.web.RequestHandler):
     def get(self, username):
-        self.write("You requested the story " + username)
-        self.write(str(backend.rep_sort(username)))
+        self.write("You requested the story %s<br />" % username)
+        stats = backend.rep_sort(username)
+        for s in stats:
+            self.write('%s %s<br />' % s)
 
 class HomeHandler(BaseHandler):
     def get(self):
