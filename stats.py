@@ -38,7 +38,7 @@ class Application(tornado.web.Application):
             xsrf_cookies=True,
             facebook_api_key=options.facebook_api_key,
             facebook_secret=options.facebook_secret,
-            ui_modules= {"Post": PostModule},
+            ui_modules= {"Bump": BumpModule},
             debug=True,
         )
         tornado.web.Application.__init__(self, handlers, **settings)
@@ -52,18 +52,19 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class StatsHandler(tornado.web.RequestHandler):
     def get(self, username):
-        self.write("You requested the story %s<br />" % username)
-        stats = backend.rep_sort(username)
-        for s in stats:
-            self.write('%s %s<br />' % s)
+        if self.get_argument("reload", None):
+            self.write("Will load stats...please stand by")
+        else:
+            stats = backend.rep_sort(username)
+            self.render('stats.html',stats=stats)
 
 class HomeHandler(BaseHandler):
     def get(self):
         self.render("index.html")
 
-class PostModule(tornado.web.UIModule):
-    def render(self, post, actor):
-        return self.render_string("modules/post.html", post=post, actor=actor)
+class BumpModule(tornado.web.UIModule):
+    def render(self, bump):
+        return self.render_string("modules/bump.html", bump=bump)
 
 
 def main():

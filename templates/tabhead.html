@@ -2,16 +2,7 @@
           <a href="/"><img src="/static/img/new-logo2.png" alt="logo"/></a>
         </div>
         <div class="login">
-          <div id="login-line">
-            {% if current_user %}
-            <b>{{ escape(current_user["first_name"]) }}</b> -
-            <a href="/auth/logout">{{ _("Sign out") }}</a>
-            {% else %}
-            <a href="/auth/login">
-                <img id="fb_login_image" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/>
-            </a>
-            {% end %}
-          </div>
+          <div id="login-line"></div>
         </div>
         <div id="left_tabs">
           {% include 'mainmenu.html' %}
