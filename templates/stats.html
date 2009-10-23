@@ -1,3 +1,13 @@
-    	{% for bump in stats %}
-          {{ modules.Bump(bump) }}
+        <table id="bumps-table">
+        <thead>
+        <tr>
+        <th>Reputation Bump</th>
+        <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+     	{% for bump in stats %}
+         {{ modules.Bump(bump) }}
     	{% end %}
+        <tbody>
+        </table>
