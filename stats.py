@@ -15,6 +15,8 @@ import uimodules
 
 from tornado.options import define, options
 
+import backend
+
 define("port", default=8888, help="run on the given port", type=int)
 define("facebook_api_key", help="your Facebook application API key",
        default="9e2ada1b462142c4dfcc8e894ea1e37c")
@@ -26,9 +28,7 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", HomeHandler),
-            (r"/a/fb-stream", FbStreamHandler),
-            (r"/auth/login", AuthLoginHandler),
-            (r"/auth/logout", AuthLogoutHandler),
+            (r"/user/(\w+)", StatsHandler),
         ]
         settings = dict(
             cookie_secret="12oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
@@ -50,60 +50,14 @@ class BaseHandler(tornado.web.RequestHandler):
         if not user_json: return None
         return tornado.escape.json_decode(user_json)
 
+class StatsHandler(tornado.web.RequestHandler):
+    def get(self, username):
+        self.write("You requested the story " + username)
+        self.write(str(backend.rep_sort(username)))
+
 class HomeHandler(BaseHandler):
     def get(self):
         self.render("index.html")
-
-class FbStreamHandler(BaseHandler, tornado.auth.FacebookMixin):
-    @tornado.web.authenticated
-    @tornado.web.asynchronous
-    def get(self):
-        self.facebook_request(
-            method="stream.get",
-            limit=4,
-            callback=self.async_callback(self._on_stream),
-            session_key=self.current_user["session_key"])
-
-    def _on_stream(self, stream):
-        if stream is None:
-            # Session may have expired
-            self.redirect("/auth/login")
-            return
-        # Turn profiles into a dict mapping id => profile
-        stream["profiles"] = dict((p["id"], p) for p in stream["profiles"])
-        self.render("stream.html", stream=stream)
-
-
-class AuthLoginHandler(BaseHandler, tornado.auth.FacebookMixin):
-    @tornado.web.asynchronous
-    def get(self):
-        if self.get_argument("session", None):
-            self.get_authenticated_user(self.async_callback(self._on_auth))
-            return
-        self.authorize_redirect("read_stream")
-    
-    def _on_auth(self, user):
-        if not user:
-            raise tornado.web.HTTPError(500, "Facebook auth failed")
-        self.set_secure_cookie("user", tornado.escape.json_encode(user))
-        self.redirect(self.get_argument("next", "/"))
-
-
-class AuthLogoutHandler(BaseHandler, tornado.auth.FacebookMixin):
-    @tornado.web.asynchronous
-    def get(self):
-        self.clear_cookie("user")
-        if not self.current_user:
-            self.redirect(self.get_argument("next", "/"))
-            return
-        self.facebook_request(
-            method="auth.revokeAuthorization",
-            callback=self.async_callback(self._on_deauthorize),
-            session_key=self.current_user["session_key"])
-
-    def _on_deauthorize(self, response):
-        self.redirect(self.get_argument("next", "/"))
-
 
 class PostModule(tornado.web.UIModule):
     def render(self, post, actor):
@@ -115,7 +69,6 @@ def main():
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
-
 
 if __name__ == "__main__":
     main()

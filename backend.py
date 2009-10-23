@@ -34,13 +34,15 @@ def store_song_data(username,songdata,bumpdata):
         r.set('durdn.songs.reps.' + b[0],int(b[1]))
 
 def rep_sort(username):
+    res = []
     for s in r.sort('%s.song.ids' % username, 
                     by='%s.songs.reps.*' % username, 
                     get='%s.song.*' % username,desc=True):
         s = eval(s)
         rep = r.get('%s.songs.reps.%s' % (username,s['id']))
         name = s['name']
-        print rep,name
+        res.append((rep,name))
+    return res
 
 if __name__ == '__main__':
     try:
