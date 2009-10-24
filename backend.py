@@ -43,7 +43,14 @@ def rep_sort(username):
             s = eval(s)
             rep = r.get('%s.songs.reps.%s' % (username,s['id']))
             name = s['name']
-            res.append((rep,name))
+            photo_base_url = s['photo_base_url']
+            artist = s['artist']
+            score= s['score']
+            key = s['key']
+            id = s['id']
+            artist_username=s['artist_username']
+            res.append((rep,name,artist,score,key,id,photo_base_url,artist_username))
+            
     except redis.ResponseError:
         logging.error('no song.ids for user %s' % username)
         return None
