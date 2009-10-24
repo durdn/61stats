@@ -59,11 +59,12 @@ class CollectHandler(tornado.web.RequestHandler):
     def get(self, username,page):
         #songdata,bumpdata,numpages = backend.get_song_data(username,page=page)
         #backend.store_song_data(username,songdata,bumpdata)
-        numpages = 5
+        numpages = 10 
         import time;time.sleep(0.5)
         json = {'result' : 'OK','username' : username, 'page' : page, 'numpages' : numpages}
         logging.error(str(json))
-        return self.write(json)
+        self.write(json)
+        self.finish()
 
 
 class StatsHandler(tornado.web.RequestHandler):
