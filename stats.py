@@ -72,7 +72,7 @@ class StatsHandler(tornado.web.RequestHandler):
     def get(self, username):
         http = tornado.httpclient.AsyncHTTPClient()
         stats = backend.rep_sort(username)
-        self.render('stats.html',stats=stats)
+        self.render('stats.html',stats=stats, username=username)
 
 class HomeHandler(BaseHandler):
     def get(self):

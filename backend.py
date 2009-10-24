@@ -29,10 +29,10 @@ def get_song_data(username,page):
 def store_song_data(username,songdata,bumpdata):
     for s in songdata.keys():
         r.set('%s.song.%s' % (username,s), songdata[s])
-        r.sadd('durdn.song.ids',s)
+        r.sadd('%s.song.ids' % username,s)
 
     for b in bumpdata:
-        r.set('durdn.songs.reps.' + b[0],int(b[1]))
+        r.set('%s.songs.reps.%s' % (username,b[0]),int(b[1]))
 
 def rep_sort(username):
     res = []

@@ -33,6 +33,19 @@ $(document).ready(function() {
   if (!window.console.log) window.console.log = function() {};
   //data table connect
   $('#bumps-table').dataTable();
+  
+  $('#search').submit( function() {
+      $.get('/user/' + $('#username').val(), function (data) {
+        $('#reputation-bumps').append(data).fadeIn();
+        $('#bumps-table').dataTable({
+          "bSort": true,
+          "bStateSave": true,
+          "sPaginationType": "full_numbers",
+          "aaSorting": [[0,'desc'], [1,'asc']]
+        });
+      });
+      return false;
+  });
 
   //sammy routes definitions
   app = $.sammy(function() { with(this) {
