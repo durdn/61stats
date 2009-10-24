@@ -2,6 +2,16 @@ function collect(username,page, numpages) {
 	if (page == numpages) {
         var percentage = Math.floor(100 * parseInt(page) / parseInt(numpages));
         $("#progress-bar").progressBar(percentage);
+        $("#progress-bar").fadeOut();
+        $.get('/user/' + username, function (data) {
+          $('#reputation-bumps').html(data).fadeIn();
+          $('#bumps-table').dataTable({
+            "bSort": true,
+            "bStateSave": true,
+            "sPaginationType": "full_numbers",
+            "aaSorting": [[0,'desc'], [1,'asc']]
+          });
+        });
 		return;
 	} else {
       $.get('/collect/' + username + '/' + page, function (data) {
