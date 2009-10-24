@@ -11,7 +11,10 @@ import tornado.httpserver
 import tornado.ioloop
 import tornado.options
 import tornado.web
+import tornado.httpclient
 import uimodules
+import simplejson
+import socket
 
 from tornado.options import define, options
 
@@ -28,6 +31,7 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", HomeHandler),
+            (r"/collect/(\w+)/(\d+)", CollectHandler),
             (r"/user/(\w+)", StatsHandler),
         ]
         settings = dict(
@@ -40,6 +44,7 @@ class Application(tornado.web.Application):
             facebook_secret=options.facebook_secret,
             ui_modules= {"Bump": BumpModule},
             debug=True,
+            server_name='localhost:8888'#socket.getfqdn()
         )
         tornado.web.Application.__init__(self, handlers, **settings)
 
@@ -50,13 +55,53 @@ class BaseHandler(tornado.web.RequestHandler):
         if not user_json: return None
         return tornado.escape.json_decode(user_json)
 
+class CollectHandler(tornado.web.RequestHandler):
+    def get(self, username,page):
+        songdata,bumpdata,numpages = backend.get_song_data(username,page=page)
+        backend.store_song_data(username,songdata,bumpdata)
+        logging.error(simplejson.dumps(('OK',int(page),numpages)))
+        return self.write(simplejson.dumps(('OK',username,int(page),numpages)))
+
+
 class StatsHandler(tornado.web.RequestHandler):
+    @tornado.web.asynchronous
     def get(self, username):
+        http = tornado.httpclient.AsyncHTTPClient()
         if self.get_argument("reload", None):
-            self.write("Will load stats...please stand by")
+            self.page = 1
+            http.fetch("http://%s/collect/%s/1" % (self.settings['server_name'],username), callback=self.async_callback(self.on_response))
         else:
             stats = backend.rep_sort(username)
             self.render('stats.html',stats=stats)
+
+    def on_response(self, response):
+        http = tornado.httpclient.AsyncHTTPClient()
+        if response.error: 
+            logging.error('error:%s' % response.error)
+            raise tornado.web.HTTPError(500)
+        json = tornado.escape.json_decode(response.body)
+        logging.error('received response %s' % simplejson.dumps(json))
+        if json[0] == 'OK':
+            self.username = json[1]
+            self.page = int(json[2])
+            self.numpages = int(json[3])
+            self.write(simplejson.dumps(('OK',self.page,self.numpages)))
+            if self.page == self.numpages - 1:
+                self.finish()
+                self.page = 0
+                self.numpages = 0
+                self.username = ''
+                return
+            else:
+                self.page = self.page + 1
+                logging.error('new request %s' % simplejson.dumps(('OK',int(self.page),self.numpages)))
+                http.fetch("http://%s/collect/%s/%d" % (self.settings['server_name'],self.username,self.page), callback=self.async_callback(self.on_response))
+                return
+        logging.error('closing long poll')
+        self.page = 0
+        self.numpages = 0
+        self.username = ''
+        self.finish()
 
 class HomeHandler(BaseHandler):
     def get(self):
