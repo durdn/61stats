@@ -71,42 +71,8 @@ class StatsHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     def get(self, username):
         http = tornado.httpclient.AsyncHTTPClient()
-        if self.get_argument("reload", None):
-            self.page = 1
-            http.fetch("http://%s/collect/%s/1" % (self.settings['server_name'],username), callback=self.async_callback(self.on_response))
-        else:
-            stats = backend.rep_sort(username)
-            self.render('stats.html',stats=stats)
-
-    def on_response(self, response):
-        http = tornado.httpclient.AsyncHTTPClient()
-        if response.error: 
-            logging.error('error:%s' % response.error)
-            raise tornado.web.HTTPError(500)
-        json = tornado.escape.json_decode(response.body)
-        logging.error('received response %s' % simplejson.dumps(json))
-        if json['result'] == 'OK':
-            self.username = json['username']
-            self.page = int(json['page'])
-            self.numpages = int(json['numpages'])
-            json = {'result' : 'OK','page' : self.page, 'username': self.username, 'numpages' : self.numpages}
-            self.write(json)
-            if self.page == self.numpages - 1:
-                self.finish()
-                self.page = 0
-                self.numpages = 0
-                self.username = ''
-                return
-            else:
-                self.page = self.page + 1
-                logging.error('new request %s' % simplejson.dumps(('OK',int(self.page),self.numpages)))
-                http.fetch("http://%s/collect/%s/%d" % (self.settings['server_name'],self.username,self.page), callback=self.async_callback(self.on_response))
-                return
-        logging.error('closing long poll')
-        self.page = 0
-        self.numpages = 0
-        self.username = ''
-        self.finish()
+        stats = backend.rep_sort(username)
+        self.render('stats.html',stats=stats)
 
 class HomeHandler(BaseHandler):
     def get(self):
