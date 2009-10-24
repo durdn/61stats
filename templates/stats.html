@@ -1,3 +1,4 @@
+        {% if stats %}
         <table id="bumps-table">
         <thead>
         <tr>
@@ -11,3 +12,6 @@
     	{% end %}
         <tbody>
         </table>
+    	{% else %}
+    	  No data persisted for user yet
+    	{% end %}

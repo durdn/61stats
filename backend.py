@@ -6,6 +6,7 @@ import simplejson
 import re
 import sys
 from pprint import pprint
+import logging
 
 r = redis.Redis()
 r.info()
@@ -35,13 +36,17 @@ def store_song_data(username,songdata,bumpdata):
 
 def rep_sort(username):
     res = []
-    for s in r.sort('%s.song.ids' % username, 
-                    by='%s.songs.reps.*' % username, 
-                    get='%s.song.*' % username,desc=True):
-        s = eval(s)
-        rep = r.get('%s.songs.reps.%s' % (username,s['id']))
-        name = s['name']
-        res.append((rep,name))
+    try:
+        for s in r.sort('%s.song.ids' % username, 
+                        by='%s.songs.reps.*' % username, 
+                        get='%s.song.*' % username,desc=True):
+            s = eval(s)
+            rep = r.get('%s.songs.reps.%s' % (username,s['id']))
+            name = s['name']
+            res.append((rep,name))
+    except redis.ResponseError:
+        logging.error('no song.ids for user %s' % username)
+        return None
     return res
 
 if __name__ == '__main__':

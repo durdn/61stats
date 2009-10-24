@@ -57,10 +57,13 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class CollectHandler(tornado.web.RequestHandler):
     def get(self, username,page):
-        songdata,bumpdata,numpages = backend.get_song_data(username,page=page)
-        backend.store_song_data(username,songdata,bumpdata)
-        logging.error(simplejson.dumps(('OK',int(page),numpages)))
-        return self.write(simplejson.dumps(('OK',username,int(page),numpages)))
+        #songdata,bumpdata,numpages = backend.get_song_data(username,page=page)
+        #backend.store_song_data(username,songdata,bumpdata)
+        numpages = 5
+        import time;time.sleep(0.5)
+        json = {'result' : 'OK','username' : username, 'page' : page, 'numpages' : numpages}
+        logging.error(str(json))
+        return self.write(json)
 
 
 class StatsHandler(tornado.web.RequestHandler):
@@ -81,11 +84,12 @@ class StatsHandler(tornado.web.RequestHandler):
             raise tornado.web.HTTPError(500)
         json = tornado.escape.json_decode(response.body)
         logging.error('received response %s' % simplejson.dumps(json))
-        if json[0] == 'OK':
-            self.username = json[1]
-            self.page = int(json[2])
-            self.numpages = int(json[3])
-            self.write(simplejson.dumps(('OK',self.page,self.numpages)))
+        if json['result'] == 'OK':
+            self.username = json['username']
+            self.page = int(json['page'])
+            self.numpages = int(json['numpages'])
+            json = {'result' : 'OK','page' : self.page, 'username': self.username, 'numpages' : self.numpages}
+            self.write(json)
             if self.page == self.numpages - 1:
                 self.finish()
                 self.page = 0
