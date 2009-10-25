@@ -20,7 +20,7 @@ from tornado.options import define, options
 
 import backend
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=8610, help="run on the given port", type=int)
 define("facebook_api_key", help="your Facebook application API key",
        default="9e2ada1b462142c4dfcc8e894ea1e37c")
 define("facebook_secret", help="your Facebook application secret",
@@ -44,7 +44,7 @@ class Application(tornado.web.Application):
             facebook_secret=options.facebook_secret,
             ui_modules= {"Bump": BumpModule},
             debug=True,
-            server_name='localhost:8888'#socket.getfqdn()
+            server_name='61stats.durdn.com'#socket.getfqdn()
         )
         tornado.web.Application.__init__(self, handlers, **settings)
 

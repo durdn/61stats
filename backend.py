@@ -24,6 +24,8 @@ def get_song_data(username,page):
         numpages = int(re.search('.*<a[^>]+>(.*?)</a>.*nextpage',''.join(sp.split('\n'))).group(1))
     except:
         numpages = 1
+
+    logging.debug('scrapped %s songs, %s bumpdata, %s numpages' % (len(songdata['by_id'].keys()),len(bumpdata),numpages))
     return songdata['by_id'],bumpdata,numpages
 
 def store_song_data(username,songdata,bumpdata):
@@ -52,7 +54,7 @@ def rep_sort(username):
             res.append((rep,name,artist,score,key,id,photo_base_url,artist_username))
             
     except redis.ResponseError:
-        logging.error('no song.ids for user %s' % username)
+        logging.error('no song.ids for user %s' % username,exc_info=True)
         return None
     return res
 
