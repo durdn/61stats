@@ -1,1 +1,6 @@
-#reputation-bumps { font-size: 14px; margin-bottom: 15px; }
+#reputation-bumps, #search-wrap { font-size: 14px; margin-bottom: 15px; }
+#reputation-bumps img, #search-wrap img { vertical-align: middle; }
+
+form input[type="submit"], form input[type="text"] { margin: 20px 0; font-size: 14pt; background: #f4faff; -moz-border-radius: 5px; -webkit-border-radius: 5px; -moz-box-shadow: 3px 3px 3px 0px #aaaaaa; -webkit-box-shadow: 3px 3px 3px #aaaaaa; background: #f4faff; border: 1px solid #aeceef; padding: 3px 19px 3px 19px; }
+
+#bumps-table { margin-top: 15px; }

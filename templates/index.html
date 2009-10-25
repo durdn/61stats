@@ -11,20 +11,25 @@
       <div id="tabhead">
         {% include 'tabhead.html' %}
       </div>
-<!--      <div id="welcome">
+      <div id="welcome">
         <div class="frame">
-          <h2>Welcome to this Template</h2>
-          <p>Etiam feugiat iaculis massa et vehicula. Ut vitae lacinia enim. Cras tellus ligula, varius vitae pulvinar a, tincidunt a lectus. Quisque scelerisque, sapien et pulvinar consectetur, massa diam pretium nunc, a malesuada ante lacus sed purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur auctor pretium sagittis. Sed arcu diam, cursus nec fringilla vitae, interdum et risus. Ut vel justo est, vitae volutpat est. Quisque eget dolor quis risus consequat viverra. Duis in ante nisi, ut rutrum urna. Nunc pellentesque, enim at feugiat hendrerit, nibh erat condimentum ante, at vulputate odio sapien eget sapien. Curabitur lorem libero, imperdiet ac tincidunt a, elementum quis lorem. Curabitur auctor neque at metus condimentum at consectetur ante auctor.  </p>
+          <p><b>61 stats</b> is a small app that collects interesting stats about <a href="http://thesixtyone.com">T61</a> users. Feel free to enter your username or somebody elses. 
+          Specifically scans the stats page and shows the songs on which the user gained more reputation.
+          </p>
         </div>
-      </div>-->
-      <div id="reputation-bumps">
-        <h3>Enter a t61 username</h3>
+      </div>
+      <div id="search-wrap">
+        <h2>Enter a t61 username</h2>
         <form id="search" action="#">
+          <img src="/static/img/icons/user_suit.png" alt=""/>
           <input type="text" id="username" />
           <input type="submit" id="submit" />
+          <div id="permalink"></div>
         </form>
         <div id="progress-bar" style="display: none;">
         </div>
+      </div>
+      <div id="reputation-bumps">
       </div>
       <div id="footer">
         <div class="frame">

@@ -34,9 +34,12 @@ $(document).ready(function() {
   //data table connect
   $('#bumps-table').dataTable();
   
+  $('#username').mouseenter(function() {
+	  $(this).focus();
+  });
   $('#search').submit( function() {
       $.get('/user/' + $('#username').val(), function (data) {
-        $('#reputation-bumps').append(data).fadeIn();
+        $('#reputation-bumps').html(data).fadeIn();
         $('#bumps-table').dataTable({
           "bSort": true,
           "bStateSave": true,
@@ -44,6 +47,15 @@ $(document).ready(function() {
           "aaSorting": [[0,'desc'], [1,'asc']]
         });
       });
+      $('#permalink').hide().html('Permanent <a href="/#/user/'+$('#username').val()+'">link</a> to '+$('#username').val()+' stats.<br />').show();
+	  if ($('#load-now').length == 0) {
+        $('#bumps-table').fadeOut();
+        $('#permalink').fadeOut();
+        $('#load-now').remove();
+	  } else {
+        $('#permalink').fadeIn();
+        $('#bumps-table').show();
+	  }
       return false;
   });
 
@@ -51,6 +63,7 @@ $(document).ready(function() {
   app = $.sammy(function() { with(this) {
     get('#/user/:username/:reload', function() { with(this) {
       $("#progress-bar").progressBar(0).show();
+      $('#load-now').fadeOut();
       collect(params['username'],1,-1);
     }});
     get('#/user/:username', function() { with(this) {

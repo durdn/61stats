@@ -1,5 +1,17 @@
 @import common.sass
 
-#reputation-bumps
+#reputation-bumps, #search-wrap
   :font-size 14px
   :margin-bottom 15px
+  img
+    :vertical-align middle
+
+form
+  input[type="submit"], input[type="text"]
+    :margin 20px 0
+    :font-size 14pt
+    :background = !secondary_color
+    +box-filter
+
+#bumps-table
+  :margin-top 15px

@@ -23,7 +23,7 @@ def get_song_data(username,page):
     try:
         numpages = int(re.search('.*<a[^>]+>(.*?)</a>.*nextpage',''.join(sp.split('\n'))).group(1))
     except:
-        numpages = None
+        numpages = 1
     return songdata['by_id'],bumpdata,numpages
 
 def store_song_data(username,songdata,bumpdata):

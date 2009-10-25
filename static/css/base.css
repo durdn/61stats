@@ -16,7 +16,12 @@ img { border: 0; }
 
 p { line-height: 21px; font-size: 13px; }
 
-#reputation-bumps { font-size: 14px; margin-bottom: 15px; }
+#reputation-bumps, #search-wrap { font-size: 14px; margin-bottom: 15px; }
+#reputation-bumps img, #search-wrap img { vertical-align: middle; }
+
+form input[type="submit"], form input[type="text"] { margin: 20px 0; font-size: 14pt; background: #f4faff; -moz-border-radius: 5px; -webkit-border-radius: 5px; -moz-box-shadow: 3px 3px 3px 0px #aaaaaa; -webkit-box-shadow: 3px 3px 3px #aaaaaa; background: #f4faff; border: 1px solid #aeceef; padding: 3px 19px 3px 19px; }
+
+#bumps-table { margin-top: 15px; }
 
 body { font-family: "lucida grande","segoe ui",arial,sans-serif; font-size: 11px; font-weight: normal; font-style: normal; color: #1f75cc; text-transform: none; text-decoration: none; letter-spacing: normal; word-spacing: normal; color: #333; background-color: #FFF; margin: 0; }
 
@@ -96,7 +101,9 @@ html { height: 100%; }
 
 #reputation-bumps { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; padding-right: 120px; margin-left: 0; margin-right: 0; }
 
-#footer { padding-left: 120px; padding-right: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; margin: 0; }
+#search-wrap { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; padding-right: 120px; margin-left: 0; margin-right: 0; }
+
+#footer { padding-left: 120px; padding-right: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; margin: 0; margin-top: 15px; margin-bottom: 15px; }
 #footer .frame { background-color: transparent; background-image: url(/static/img/skinny_dots.gif); background-repeat: repeat-x; background-position: 50% 0%; background-attachment: scroll; opacity: 1; color: #777777; padding: 10px; }
 #footer .header { margin-left: -5px; color: #787878; font-weight: bold; }
 #footer #col1 { display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 160px; margin: 0px 2px 0px 2px; }
