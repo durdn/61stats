@@ -99,7 +99,9 @@ html { height: 100%; }
 #welcome { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; padding-right: 120px; margin-left: 0; margin-right: 0; }
 #welcome .frame { -moz-border-radius: 10px; -webkit-border-radius: 10px; -moz-box-shadow: 5px 5px 5px 0px #aaaaaa; -webkit-box-shadow: 5px 5px 5px #aaaaaa; background: #f4faff; padding: 5px 10px 5px 10px; margin: 0; border: 1px solid #aeceef; }
 
-#reputation-bumps { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; padding-right: 120px; margin-left: 0; margin-right: 0; }
+#actions { float: right; }
+
+#reputation-bumps { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; padding-right: 120px; margin-left: 0; margin-right: 0; margin-top: 20px; }
 
 #search-wrap { padding-left: 120px; display: inline; float: left; margin-left: 10px; margin-right: 10px; width: 700px; padding-right: 120px; margin-left: 0; margin-right: 0; }
 

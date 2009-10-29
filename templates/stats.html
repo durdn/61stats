@@ -1,4 +1,8 @@
         {% if stats %}
+        <div id="actions">
+        <div id="permalink"><a href="/#/user/{{ username }}">Permanent link</a> to {{username}} data</div>
+        <div id="refresh-now">Reload data from t61 <a href="/#/user/{{ username }}/reload">now</a></div>
+        </div>
         <table id="bumps-table">
         <thead>
         <tr>

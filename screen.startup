@@ -1,0 +1,7 @@
+#startup project requirements
+#
+screen -t server bash -c "source /home/nick/dev/envs/tornado-env/bin/activate && ./stats.py"
+screen -t ipython bash -c "source /home/nick/dev/envs/tornado-env/bin/activate && ipython"
+screen -t redis bash -c "/home/nick/dev/apps/redis/redis-server"
+screen -t compass bash -c "compass -w static"
+select 0

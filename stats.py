@@ -58,7 +58,9 @@ class BaseHandler(tornado.web.RequestHandler):
 class CollectHandler(tornado.web.RequestHandler):
     def get(self, username,page):
         songdata,bumpdata,numpages = backend.get_song_data(username,page=page)
+        logging.error('frozen get 1')
         backend.store_song_data(username,songdata,bumpdata)
+        logging.error('frozen get 2')
         #numpages = 10 
         #import time;time.sleep(0.5)
         json = {'result' : 'OK','username' : username, 'page' : page, 'numpages' : numpages}

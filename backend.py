@@ -21,7 +21,14 @@ def get_song_data(username,page):
     bumpdata = re.findall('song_metadata_(.*?)\".*?bump_report.*?>.*?<b>\+(.*?)rep</b>.*?\(.*?(\d+).*?(\d+)',
                            ''.join(sp.split()), re.MULTILINE|re.IGNORECASE)
     try:
-        numpages = int(re.search('.*<a[^>]+>(.*?)</a>.*nextpage',''.join(sp.split('\n'))).group(1))
+        if re.search('nextpage',sp):
+            match = re.search('.*<a[^>]+>(.*?)</a>.*nextpage',''.join(sp.split('\n')))
+            if match:
+                numpages = int(match.group(1))
+            else:
+                numpages = 1
+        else:
+            numpages = 1
     except:
         numpages = 1
 
@@ -54,7 +61,7 @@ def rep_sort(username):
             res.append((rep,name,artist,score,key,id,photo_base_url,artist_username))
             
     except redis.ResponseError:
-        logging.error('no song.ids for user %s' % username,exc_info=True)
+        logging.error('no songs stored for user %s' % username)
         return None
     return res
 
