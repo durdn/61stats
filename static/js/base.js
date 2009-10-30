@@ -23,6 +23,11 @@ function collect(username,page, numpages) {
             $("#progress-bar").progressBar(percentage);
             collect(username,page+1,numpages);
     	}
+    	if (response['result'] == 'KO') {
+            $('#progress-bar').hide();
+            $('#reputation-bumps').html(response['message']).fadeIn();
+    	}
+
       });
 	}	
 }

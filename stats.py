@@ -57,10 +57,16 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class CollectHandler(tornado.web.RequestHandler):
     def get(self, username,page):
-        songdata,bumpdata,numpages = backend.get_song_data(username,page=page)
-        logging.error('frozen get 1')
+        try:
+            songdata,bumpdata,numpages = backend.get_song_data(username,page=page)
+        except IOError:
+            json = {'result' : 'KO','message': 'network connection problem'};
+            logging.error(str(json))
+            self.write(json)
+            self.finish()
+            return
+
         backend.store_song_data(username,songdata,bumpdata)
-        logging.error('frozen get 2')
         #numpages = 10 
         #import time;time.sleep(0.5)
         json = {'result' : 'OK','username' : username, 'page' : page, 'numpages' : numpages}
