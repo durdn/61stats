@@ -59,7 +59,7 @@ class CollectHandler(tornado.web.RequestHandler):
     def get(self, username,page):
         try:
             songdata,bumpdata,numpages = backend.get_song_data(username,page=page)
-        except IOError:
+        except IOError,ConnectionError:
             json = {'result' : 'KO','message': 'network connection problem'};
             logging.error(str(json))
             self.write(json)

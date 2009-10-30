@@ -65,7 +65,7 @@ $(document).ready(function() {
       $('#load-now').fadeOut();
       collect(params['username'],1,1);
       //change url to non reloading one
-      window.location.replace("/#/" + params['username']);
+      window.location.replace("/#/user/" + params['username']);
     }});
     get('#/user/:username', function() { with(this) {
       //$('#reputation-bumps').html(spinning_gif);
@@ -78,6 +78,12 @@ $(document).ready(function() {
           "aaSorting": [[1,'desc'], [2,'asc']]
         });
       });
+	  if ($('#load-now').length == 0) {
+        $('#bumps-table').fadeOut();
+        $('#load-now').remove();
+	  } else {
+        $('#bumps-table').show();
+	  }
       $('#search-wrap').hide();
     }});
   }});
