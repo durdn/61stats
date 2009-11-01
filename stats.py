@@ -43,7 +43,7 @@ class Application(tornado.web.Application):
             facebook_api_key=options.facebook_api_key,
             facebook_secret=options.facebook_secret,
             ui_modules= {"Bump": BumpModule},
-            debug=True,
+            debug=False,
             server_name='61stats.durdn.com'#socket.getfqdn()
         )
         tornado.web.Application.__init__(self, handlers, **settings)

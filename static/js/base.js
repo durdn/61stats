@@ -11,6 +11,8 @@ function collect(username,page, numpages) {
             "sPaginationType": "full_numbers",
             "aaSorting": [[1,'desc'], [2,'asc']]
           });
+          //change url to non reloading one
+          window.location.replace("/#/user/" + params['username']);
         });
 		return;
 	} else {
@@ -64,8 +66,6 @@ $(document).ready(function() {
       $("#progress-bar").progressBar(0).show();
       $('#load-now').fadeOut();
       collect(params['username'],1,1);
-      //change url to non reloading one
-      window.location.replace("/#/user/" + params['username']);
     }});
     get('#/user/:username', function() { with(this) {
       //$('#reputation-bumps').html(spinning_gif);
