@@ -70,7 +70,6 @@ class CollectHandler(tornado.web.RequestHandler):
         #numpages = 10 
         #import time;time.sleep(0.5)
         json = {'result' : 'OK','username' : username, 'page' : page, 'numpages' : numpages}
-        logging.error(str(json))
         self.write(json)
         self.finish()
 

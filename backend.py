@@ -34,7 +34,7 @@ def get_song_data(username,page):
             b[4] = '1'
         enriched.append(tuple(b))
 
-    logging.info('bump data: %s' % str(enriched))
+    logging.debug('bump data: %s' % str(enriched))
     try:
         if re.search('nextpage',sp):
             match = re.search('.*<a[^>]+>(.*?)</a>.*nextpage',''.join(sp.split('\n')))
